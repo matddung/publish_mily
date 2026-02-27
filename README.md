@@ -8,6 +8,37 @@ MILY
 
 ---
 
+내가 맡은 역할
+-------------
+- 일반 멤버 테이블과 변호사 멤버 테이블을 분리하여 정보 저장
+- 견적서 엔티티, API 구현
+- 예약 엔티티, API 구현
+- 변호사 멤버 가입시 이미지 기입 구현
+
+---
+
+## ⚡ Quick Start
+
+1. 서버 실행
+
+```bash
+cd backend
+./gradlew bootRun --args='--spring.profiles.active=local'
+```
+
+2실행 확인
+- 기본 주소: `http://localhost:8080`
+
+---
+
+### ✍ Achieved
+- 예약 생성 로직을 단일 서비스 메서드로 통합하고, 트랜잭션 범위 내에서 처리하도록 구조 개선
+- DB 레벨 Unique Constraint 추가를 통해 Race Condition 상황에서도 최종 정합성 보장
+- 애플리케이션 레벨 검증 + DB 레벨 제약을 병행 적용한 방어적 설계 적용
+- 중복 예약 시나리오 테스트 케이스 추가 및 검증
+
+---
+
 ![mily main](https://github.com/user-attachments/assets/ae540be2-7d2a-4308-a1c3-54e0daad51ca)
 ---------------
 origin repository adress : https://github.com/final-project-gang/mily
@@ -60,18 +91,11 @@ Demonstration video adress : https://www.youtube.com/watch?v=G7RHVrFfPSo&t=376s
 - matddung(윤준혁, 조원)
 - rudqja1127(박경범, 조원)
 
-내가 맡은 역할
--------------
-- 일반 멤버 테이블과 변호사 멤버 테이블을 분리하여 정보 저장
-- 견적서 엔티티, API 구현
-- 예약 엔티티, API 구현
-- 변호사 멤버 가입시 이미지 기입 구현
-
 ---
 
 개발 환경
 --------
-- Spring Boot 3.1.4
+- Spring Boot 3.1.4, Java 17
 - Spring Security
 - Spring Data JPA
 - Maria DB
@@ -80,27 +104,6 @@ Demonstration video adress : https://www.youtube.com/watch?v=G7RHVrFfPSo&t=376s
 - Lombok
 
 ---
-
-로컬 환경 실행 방법
-------------------
-git clone
-
-    git clone https://github.com/matddung/milyReadMe.git
-
-yml 수정할 부분
-
-    datasource:
-    url: jdbc:mariadb://localhost:3306/'db명'  ex) mily
-    username: '사용자명'  ex) root
-    password: '비밀번호'  ex) 
-
-gradle 빌드
-
-    ./gradlew build
-
-실행
-
-    ./gradlew bootRun
 
 ERD
 ---
