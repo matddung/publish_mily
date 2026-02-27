@@ -39,7 +39,7 @@ dependencies {
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '3.0.5'
 	implementation 'org.apache.commons:commons-lang3:3.12.0'
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
-
+	implementation 'com.h2database:h2'
 
 	// Querydsl 추가
     implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'

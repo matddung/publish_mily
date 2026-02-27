@@ -13,6 +13,8 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
 
     List<Reservation> findByLawyerUserIdAndReservationTime(Long lawyerUserId, LocalDateTime dateTime);
 
+    boolean existsByLawyerUserIdAndReservationTime(Long lawyerUserId, LocalDateTime reservationTime);
+
     Optional<Reservation> findByReservationTime(LocalDateTime reservationTime);
 
     List<Reservation> findByMilyUserId(long id);

@@ -2,8 +2,8 @@ package com.mily.reservation;
 
 import com.mily.user.LawyerUser;
 import com.mily.user.MilyUser;
-import com.mily.user.MilyUserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,18 +18,29 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public class ReservationService {
     private final ReservationRepository reservationRepository;
-    private final MilyUserService milyUserService;
 
-    // 예약 저장
-    public void saveReservation(MilyUser milyUser, LawyerUser lawyerUser, LocalDateTime time) {
+    @Transactional
+    public void createReservationIfAvailable(MilyUser milyUser, LawyerUser lawyerUser, LocalDateTime time) {
+        boolean exists = reservationRepository.existsByLawyerUserIdAndReservationTime(lawyerUser.getId(), time);
+
+        if (exists) {
+            throw new IllegalStateException("이미 예약된 시간입니다.");
+        }
+
         Reservation reservation = new Reservation();
         reservation.setMilyUser(milyUser);
         reservation.setLawyerUser(lawyerUser);
         reservation.setReservationTime(time);
-        reservationRepository.save(reservation);
+
+        try {
+            reservationRepository.save(reservation);
+        } catch (DataIntegrityViolationException ex) {
+            throw new IllegalStateException("이미 예약된 시간입니다.", ex);
+        }
     }
 
     // 예약 거절
+    @Transactional
     public void refuseReservation(Reservation reservation) {
         reservationRepository.delete(reservation);
     }
@@ -68,5 +79,7 @@ public class ReservationService {
         return reservationRepository.findByLawyerUserId(id);
     }
 
-    public List<Reservation> findAll() { return reservationRepository.findAll(); }
+    public List<Reservation> findAll() {
+        return reservationRepository.findAll();
+    }
 }

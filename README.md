@@ -1,5 +1,13 @@
 MILY
 ====
+
+----
+
+## 프로젝트 개발 동기
+법에 대해 잘 모를 때, 법이 필요한 경우에 사용할 수 있는 페이지를 만들어보았습니다.
+
+---
+
 ![mily main](https://github.com/user-attachments/assets/ae540be2-7d2a-4308-a1c3-54e0daad51ca)
 ---------------
 origin repository adress : https://github.com/final-project-gang/mily
@@ -9,10 +17,6 @@ Demonstration video adress : https://www.youtube.com/watch?v=G7RHVrFfPSo&t=376s
 -
 
 ----------------
-
-프로젝트 개발 동기
------------------
-법에 대해 잘 모를 때, 법이 필요한 경우에 사용할 수 있는 페이지를 만들어보았습니다.
 
 #### 일반 유저는
 - 모르는 것에 대한 질문을 올려서 변호사들에게 답변을 받을 수 있습니다.
@@ -24,6 +28,8 @@ Demonstration video adress : https://www.youtube.com/watch?v=G7RHVrFfPSo&t=376s
 - 일반 유저가 올린 질문에 답변을 달아서 포인트를 얻을 수 있습니다.
 - 자신에게 도착한 견적서로 유저에게 연락할 수 있습니다.
 - 자신을 좀 더 쉽고 편하게 소개할 수 있습니다.
+
+---
 
 프로젝트 소개
 ------------
@@ -41,6 +47,7 @@ Demonstration video adress : https://www.youtube.com/watch?v=G7RHVrFfPSo&t=376s
 
 토스 페이먼츠를 구현해 테스트 결제를 구현해 보았습니다.
 
+---
 
 개발 기간
 --------
@@ -60,23 +67,19 @@ Demonstration video adress : https://www.youtube.com/watch?v=G7RHVrFfPSo&t=376s
 - 예약 엔티티, API 구현
 - 변호사 멤버 가입시 이미지 기입 구현
 
+---
+
 개발 환경
 --------
-Windows 10, 64bit
+- Spring Boot 3.1.4
+- Spring Security
+- Spring Data JPA
+- Maria DB
+- Gradle 7.6.1
+- tika
+- Lombok
 
-Spring Boot 3.1.4
-
-Spring Security
-
-Spring Data JPA
-
-Maria DB
-
-Gradle 7.6.1
-
-tika
-
-Lombok
+---
 
 로컬 환경 실행 방법
 ------------------

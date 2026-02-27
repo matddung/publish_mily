@@ -1,0 +1,43 @@
+server:
+  port: 8080
+spring:
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: ${spring.servlet.multipart.max-file-size}
+  devtools:
+    livereload:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:mily;MODE=MySQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  thymeleaf:
+    cache: false
+    prefix: file:src/main/resources/templates/
+  output:
+    ansi:
+      enabled: ALWAYS
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: winter001110@gmail.com
+    password:
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+custom:
+  tempDirPath: c:/test/temp/mily/temp
+  site:
+    name: 밀리
+    baseUrl: "http://localhost:8080"
+  image:
+    dirPath: c:/test/temp/mily

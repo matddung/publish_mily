@@ -38,7 +38,7 @@ public class ReservationController {
         LawyerUser lawyerUser = milyUserService.getLawyer(lawyerUserId).getLawyerUser();
 
         try {
-            reservationService.saveReservation(milyUser, lawyerUser, reservation.getReservationTime());
+            reservationService.createReservationIfAvailable(milyUser, lawyerUser, reservation.getReservationTime());
             redirectAttributes.addFlashAttribute("message", "예약이 성공적으로 저장되었습니다.");
         } catch (Exception ex) {
             redirectAttributes.addFlashAttribute("errorMessage", "예약 저장 중 오류가 발생했습니다 : " + ex.getMessage());
@@ -152,13 +152,13 @@ public class ReservationController {
         LocalTime parsedTime = LocalTime.parse(selectedTime);
         LocalDateTime reservationTime = selectDate.atTime(parsedTime);
 
-        if (reservationService.findByReservationTime(reservationTime).isPresent()) {
-            return "redirect:/user/lawyers";
-        }
-
         dayOfWeek = selectDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.KOREAN).substring(0, 1);
 
-        reservationService.saveReservation(isLoginedUser, lawyerUser.getLawyerUser(), reservationTime);
+        try {
+            reservationService.createReservationIfAvailable(isLoginedUser, lawyerUser.getLawyerUser(), reservationTime);
+        } catch (IllegalStateException ex) {
+            return "redirect:/user/lawyers";
+        }
 
         model.addAttribute("lawyer", lawyerUser);
         model.addAttribute("user", isLoginedUser);
